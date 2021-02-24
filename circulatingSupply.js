@@ -1,15 +1,22 @@
 require("dotenv").config();
-const { ethers } = require("ethers");
-// const { parseUnits } = require("ethers/lib/utils");
+const { ethers, BigNumber } = require("ethers");
+const { formatEther } = require("ethers/lib/utils");
 const ContractAddresses = require("./src/contracts/contractAddresses.json");
 const LockingToken4ReputationAbi = require("./src/contracts/LockingToken4Reputation.json");
+const PrimeTokenAbi = require("./src/contracts/PrimeToken.json");
 const BPoolAbi = require("./src/contracts/BPool.json");
+const ERC20Abi = require("./src/contracts/ERC20.json");
+// const PrimeDAOAbi = require("./src/contracts/avatar.json");
 
 // const Contracts = new Map([
 //   ["LockingToken4Reputation", ContractAddresses[process.env.NETWORK].LockingToken4Reputation]
 //   , ["BPool", ContractAddresses[process.env.NETWORK].BPool]
 //   ,
 // ]);
+
+function fromWei(weiValue) {
+  return formatEther(weiValue.toString());
+};
 
 async function getCirculatingSupply(provider) {
 
@@ -23,6 +30,26 @@ async function getCirculatingSupply(provider) {
     BPoolAbi.abi,
     provider);
 
+  const primeToken = new ethers.Contract(
+    ContractAddresses[process.env.NETWORK].PrimeToken,
+    PrimeTokenAbi.abi,
+    provider);
+
+  // const primeDAO = new ethers.Contract(
+  //   ContractAddresses[process.env.NETWORK].Avatar,
+  //   PrimeDAOAbi.abi,
+  //   provider);
+
+  const primeTokenSupply = await primeToken.totalSupply();
+  const poolPrimeBalance = await bPool.getBalance(primeToken.address);
+  const primeDaoPrimeBalance = await primeToken.balanceOf(ContractAddresses[process.env.NETWORK].Avatar);
+  const treasuryPrimeBalance = await primeToken.balanceOf(process.env.TREASURY);
+  const primeLockedForRep = await lockingToken4Reputation.totalLocked();
+  console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
+  console.log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
+  console.log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
+  console.log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
+  console.log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
 }
 
 async function main() {
