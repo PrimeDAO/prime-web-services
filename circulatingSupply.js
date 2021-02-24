@@ -5,14 +5,6 @@ const ContractAddresses = require("./src/contracts/contractAddresses.json");
 const LockingToken4ReputationAbi = require("./src/contracts/LockingToken4Reputation.json");
 const PrimeTokenAbi = require("./src/contracts/PrimeToken.json");
 const BPoolAbi = require("./src/contracts/BPool.json");
-const ERC20Abi = require("./src/contracts/ERC20.json");
-// const PrimeDAOAbi = require("./src/contracts/avatar.json");
-
-// const Contracts = new Map([
-//   ["LockingToken4Reputation", ContractAddresses[process.env.NETWORK].LockingToken4Reputation]
-//   , ["BPool", ContractAddresses[process.env.NETWORK].BPool]
-//   ,
-// ]);
 
 function fromWei(weiValue) {
   return formatEther(weiValue.toString());
@@ -34,11 +26,6 @@ async function getCirculatingSupply(provider) {
     ContractAddresses[process.env.NETWORK].PrimeToken,
     PrimeTokenAbi.abi,
     provider);
-
-  // const primeDAO = new ethers.Contract(
-  //   ContractAddresses[process.env.NETWORK].Avatar,
-  //   PrimeDAOAbi.abi,
-  //   provider);
 
   const primeTokenSupply = await primeToken.totalSupply();
   const poolPrimeBalance = await bPool.getBalance(primeToken.address);
