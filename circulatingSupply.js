@@ -6,7 +6,7 @@ const LockingToken4ReputationAbi = require("./src/contracts/LockingToken4Reputat
 const PrimeTokenAbi = require("./src/contracts/PrimeToken.json");
 const BPoolAbi = require("./src/contracts/BPool.json");
 //const VestingAbi = require("./src/contracts/TokenVesting.json");
-const vestingContracts = require("./vestingContracts.json").contracts;
+const vestingContracts = require("./vestingContracts.json").vestingContracts;
 
 function fromWei(weiValue) {
   return formatEther(weiValue.toString());
@@ -40,7 +40,7 @@ async function getCirculatingSupply(provider) {
     //   contract.address,
     //   VestingAbi.abi,
     //   provider);
-    sumVestedPrime = sumVestedPrime.add(await primeToken.balanceOf(spec.vestingContract));
+    sumVestedPrime = sumVestedPrime.add(await primeToken.balanceOf(spec.contractAddress));
   }
   console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
   console.log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);

@@ -1,224 +1,224 @@
 {
-  "contracts": [
+  "vestingContracts": [
     {
       "name": "Prime Foundation #1",
-      "vestingContract": "0x44bdd60fa60c165c438a3ee93ae0ced2538bdc01"
+      "contractAddress": "0x44bdd60fa60c165c438a3ee93ae0ced2538bdc01"
     },
     {
       "name": "Product #1",
-      "vestingContract": "0x1c06323844C1d9eaA1e1c61902387f62ebFe9f04"
+      "contractAddress": "0x1c06323844C1d9eaA1e1c61902387f62ebFe9f04"
     },
     {
       "name": "Team #1",
-      "vestingContract": "0x49c38C900e9CdB461a1C5FD57802F5718632De0f"
+      "contractAddress": "0x49c38C900e9CdB461a1C5FD57802F5718632De0f"
     },
     {
       "name": "Product #2",
-      "vestingContract": "0x5899BA5082D7f9243cED027fa050f5a0bbb214fe"
+      "contractAddress": "0x5899BA5082D7f9243cED027fa050f5a0bbb214fe"
     },
     {
       "name": "Team #2",
-      "vestingContract": "0x8924e6Ae51feE0f99c788c9C6a0d86b552745828"
+      "contractAddress": "0x8924e6Ae51feE0f99c788c9C6a0d86b552745828"
     },
     {
       "name": "DGH Warrants - Big",
-      "vestingContract": "0x6415Dae024Dd34640d1e2Ba389152cceBD7D072E"
+      "contractAddress": "0x6415Dae024Dd34640d1e2Ba389152cceBD7D072E"
     },
     {
       "name": "Curve Labs multisig",
-      "vestingContract": "0x92950d7c892b7926E6F5FE57a803c510A77Da76E"
+      "contractAddress": "0x92950d7c892b7926E6F5FE57a803c510A77Da76E"
     },
     {
       "name": "Olivier Sarrouy",
-      "vestingContract": "0xF4A7a92b14656ae6C4CC19e8BF1D64C646C085FF"
+      "contractAddress": "0xF4A7a92b14656ae6C4CC19e8BF1D64C646C085FF"
     },
     {
       "name": "Arseny Akinfiev",
-      "vestingContract": "0x3Bb7A06702098d708F5d2c20e05d6B336F5dC5f7"
+      "contractAddress": "0x3Bb7A06702098d708F5d2c20e05d6B336F5dC5f7"
     },
     {
       "name": "Douglas Kent",
-      "vestingContract": "0xe4D5e38b5252C3c8ef2751C3a510f0dbb86B3fD7"
+      "contractAddress": "0xe4D5e38b5252C3c8ef2751C3a510f0dbb86B3fD7"
     },
     {
       "name": "Kolektivo Labs",
-      "vestingContract": "0xBffb86c1236c88BCf0D7cc7ca7Fe9CCe9DF9455d"
+      "contractAddress": "0xBffb86c1236c88BCf0D7cc7ca7Fe9CCe9DF9455d"
     },
     {
       "name": "Prime Foundation #1",
-      "vestingContract": "0x356D0a6cf3EBED8e066E2C35b048724756429e92"
+      "contractAddress": "0x356D0a6cf3EBED8e066E2C35b048724756429e92"
     },
     {
       "name": "Keith",
-      "vestingContract": "0x022e71b5a1391214F5b152bb963A94edD562263B"
+      "contractAddress": "0x022e71b5a1391214F5b152bb963A94edD562263B"
     },
     {
       "name": "Deep DAO",
-      "vestingContract": "0x77B607EA6A2dF8f87E07356402C499Db6a67c093"
+      "contractAddress": "0x77B607EA6A2dF8f87E07356402C499Db6a67c093"
     },
     {
       "name": "Colin Leiker",
-      "vestingContract": "0x84cf25c49719EA5140A659F826985F86e3fE4d5d"
+      "contractAddress": "0x84cf25c49719EA5140A659F826985F86e3fE4d5d"
     },
     {
       "name": "Felipe Duarte",
-      "vestingContract": "0x41e1f160ed6d90E5eB0546f1B09ad5411145DE1f"
+      "contractAddress": "0x41e1f160ed6d90E5eB0546f1B09ad5411145DE1f"
     },
     {
       "name": "Dave Costello",
-      "vestingContract": "0x06eF32ac51164126f9CC2191b71A6df1Ef12daC8"
+      "contractAddress": "0x06eF32ac51164126f9CC2191b71A6df1Ef12daC8"
     },
     {
       "name": "Emoon",
-      "vestingContract": "0xBC1FE83799C60695b7379497d8Ca74731D3Ea968"
+      "contractAddress": "0xBC1FE83799C60695b7379497d8Ca74731D3Ea968"
     },
     {
       "name": "Defi Safety",
-      "vestingContract": "0x517883f91d8f677869089c590bE3F9e44be0B5e2"
+      "contractAddress": "0x517883f91d8f677869089c590bE3F9e44be0B5e2"
     },
     {
       "name": "Rivet",
-      "vestingContract": "0x8aDFaf0FF31A0bA12D224dF7f1619714f4143680"
+      "contractAddress": "0x8aDFaf0FF31A0bA12D224dF7f1619714f4143680"
     },
     {
       "name": "Validity",
-      "vestingContract": "0xeD99D7f0d1b15Ed30634a19fA7812ABC7497345A"
+      "contractAddress": "0xeD99D7f0d1b15Ed30634a19fA7812ABC7497345A"
     },
     {
       "name": "DMM",
-      "vestingContract": "0x5E3c0DBD056d69e5068E0B5d7F44B888cEC422DB"
+      "contractAddress": "0x5E3c0DBD056d69e5068E0B5d7F44B888cEC422DB"
     },
     {
       "name": "Never Stop Marketing",
-      "vestingContract": "0x59C32257B81c466BDC71391A3578dA76c624B71c"
+      "contractAddress": "0x59C32257B81c466BDC71391A3578dA76c624B71c"
     },
     {
       "name": "Meme",
-      "vestingContract": "0x0c7b5cf9908223eD3F1a19829b4279fDFFde8Ce5"
+      "contractAddress": "0x0c7b5cf9908223eD3F1a19829b4279fDFFde8Ce5"
     },
     {
       "name": "Level K",
-      "vestingContract": "0x6bd851228879E5470437A553b055F120B7520A90"
+      "contractAddress": "0x6bd851228879E5470437A553b055F120B7520A90"
     },
     {
       "name": "Kleros",
-      "vestingContract": "0xeEfCF048C42Fb4d32dd8C67b5a4a47169c2aec6d"
+      "contractAddress": "0xeEfCF048C42Fb4d32dd8C67b5a4a47169c2aec6d"
     },
     {
       "name": "Hype Partners",
-      "vestingContract": "0x7f86B487c04EaAa48cfb5dD3ae39e968eC1Fe107"
+      "contractAddress": "0x7f86B487c04EaAa48cfb5dD3ae39e968eC1Fe107"
     },
     {
       "name": "Fuse",
-      "vestingContract": "0x12171f6D45b98EBF5e0BB6FA2458a50Fb0b41FC8"
+      "contractAddress": "0x12171f6D45b98EBF5e0BB6FA2458a50Fb0b41FC8"
     },
     {
       "name": "Protofire",
-      "vestingContract": "0x95862B41bd8b88f8595b465DcCd8b5d54a081dc2"
+      "contractAddress": "0x95862B41bd8b88f8595b465DcCd8b5d54a081dc2"
     },
     {
       "name": "dOrg",
-      "vestingContract": "0x1fbb6Bf58Cb7f31CB72284c87553C1bEdbfeCEF3"
+      "contractAddress": "0x1fbb6Bf58Cb7f31CB72284c87553C1bEdbfeCEF3"
     },
     {
       "name": "Deversifi",
-      "vestingContract": "0x1b1e8480c6F48D94BBf1824b60B0E1D9221c6565"
+      "contractAddress": "0x1b1e8480c6F48D94BBf1824b60B0E1D9221c6565"
     },
     {
       "name": "DAOstack",
-      "vestingContract": "0x28E2A7730643C79914ad15e5E38805C072e2952a"
+      "contractAddress": "0x28E2A7730643C79914ad15e5E38805C072e2952a"
     },
     {
       "name": "DAObase",
-      "vestingContract": "0x4D780b602d74fA0805864376AB628FD280c22e17"
+      "contractAddress": "0x4D780b602d74fA0805864376AB628FD280c22e17"
     },
     {
       "name": "Ben Adriasson",
-      "vestingContract": "0x6b8B9E97A3614f1bdDbb3e78B4e459BB9A3D719d"
+      "contractAddress": "0x6b8B9E97A3614f1bdDbb3e78B4e459BB9A3D719d"
     },
     {
       "name": "CryptoAtlas",
-      "vestingContract": "0x3665cD4C872AD1760d7f229324beC1db7ae2cE38"
+      "contractAddress": "0x3665cD4C872AD1760d7f229324beC1db7ae2cE38"
     },
     {
       "name": "Builder Collective",
-      "vestingContract": "0xd85782891C2dEe46CA4e230889C22c25eb0F8d1c"
+      "contractAddress": "0xd85782891C2dEe46CA4e230889C22c25eb0F8d1c"
     },
     {
       "name": "mStable",
-      "vestingContract": "0x45306A26Bd4C4C022E441d03C5fbb0dA955E2738"
+      "contractAddress": "0x45306A26Bd4C4C022E441d03C5fbb0dA955E2738"
     },
     {
       "name": "Bitfwd",
-      "vestingContract": "0x1F40471Fa3d0c3f3F3E8CF2E9263D1BE528AD018"
+      "contractAddress": "0x1F40471Fa3d0c3f3F3E8CF2E9263D1BE528AD018"
     },
     {
       "name": "API3DAO",
-      "vestingContract": "0xc8053eA0fE6e5d9b33432adF1F7E9A81b5731286"
+      "contractAddress": "0xc8053eA0fE6e5d9b33432adF1F7E9A81b5731286"
     },
     {
       "name": "AlphaFin",
-      "vestingContract": "0x1cf5C6e3eCA5BFE0bf0Fb82ba2DFAbb267FBb225"
+      "contractAddress": "0x1cf5C6e3eCA5BFE0bf0Fb82ba2DFAbb267FBb225"
     },
     {
       "name": "AgencyDAO",
-      "vestingContract": "0xd555b99026D05bd312a6Cf903D66a788dd75e861"
+      "contractAddress": "0xd555b99026D05bd312a6Cf903D66a788dd75e861"
     },
     {
       "name": "Block.Science",
-      "vestingContract": "0xb449D2D841a6153BF07D21a72DEa6Bc5C19C5c5b"
+      "contractAddress": "0xb449D2D841a6153BF07D21a72DEa6Bc5C19C5c5b"
     },
     {
       "name": "Dave (API3)",
-      "vestingContract": "0x5b77FD4277e51eCa5FB9c7f7EEeFa36538C2404D"
+      "contractAddress": "0x5b77FD4277e51eCa5FB9c7f7EEeFa36538C2404D"
     },
     {
       "name": "Zargham",
-      "vestingContract": "0x3635D1C887d8456C34a2b647c9Fd5D6D60D6b51D"
+      "contractAddress": "0x3635D1C887d8456C34a2b647c9Fd5D6D60D6b51D"
     },
     {
       "name": "Poopoo",
-      "vestingContract": "0x01aB0423a8e3422FCb7F03fF137A458f4D93C397"
+      "contractAddress": "0x01aB0423a8e3422FCb7F03fF137A458f4D93C397"
     },
     {
       "name": "Ataberk",
-      "vestingContract": "0x4cE359DB4Be26da927E8B799A7F3628d926917df"
+      "contractAddress": "0x4cE359DB4Be26da927E8B799A7F3628d926917df"
     },
     {
       "name": "Phil",
-      "vestingContract": "0xC07F3F39297d48D500433A881ace22BBb26E2EF8"
+      "contractAddress": "0xC07F3F39297d48D500433A881ace22BBb26E2EF8"
     },
     {
       "name": "Chris Dawe (effectAI)",
-      "vestingContract": "0x67464d56aE51A3B70B0023BDA5bd2DCEC381E9b6"
+      "contractAddress": "0x67464d56aE51A3B70B0023BDA5bd2DCEC381E9b6"
     },
     {
       "name": "Pedro Parrachia",
-      "vestingContract": "0xcE191F8105A877d7D9D4AC0FA9510Eee0ec7B892"
+      "contractAddress": "0xcE191F8105A877d7D9D4AC0FA9510Eee0ec7B892"
     },
     {
       "name": "Philepe",
-      "vestingContract": "0xCe32895CBC1e025AAeE384dd35C0d2D9F70dDF52"
+      "contractAddress": "0xCe32895CBC1e025AAeE384dd35C0d2D9F70dDF52"
     },
     {
       "name": "Commons Stack / Giveth",
-      "vestingContract": "0x22d19e4bB0A2546b9CF6661387cb5A61eD053d67"
+      "contractAddress": "0x22d19e4bB0A2546b9CF6661387cb5A61eD053d67"
     },
     {
       "name": "xDAI Stake",
-      "vestingContract": "0x47c4135c6aCF5524A64Cec1285d83B59198C23bf"
+      "contractAddress": "0x47c4135c6aCF5524A64Cec1285d83B59198C23bf"
     },
     {
       "name": "Token Engineering Commons",
-      "vestingContract": "0x6f7b34dD9e94539445BB0f9d8013930801b9CBB0"
+      "contractAddress": "0x6f7b34dD9e94539445BB0f9d8013930801b9CBB0"
     },
     {
       "name": "Francis Daniel",
-      "vestingContract": "0x3b53dB5056a1F77D4FA44a31a535967f2Bc46EE1"
+      "contractAddress": "0x3b53dB5056a1F77D4FA44a31a535967f2Bc46EE1"
     },
     {
       "name": "Niek",
-      "vestingContract": "0x1cebDECc5F2A9BA8cD9D8c02cc11574d9cbA9ebf"
+      "contractAddress": "0x1cebDECc5F2A9BA8cD9D8c02cc11574d9cbA9ebf"
     }
   ]
 }
