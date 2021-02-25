@@ -36,10 +36,6 @@ async function getCirculatingSupply(provider) {
   const primeLockedForRep = await lockingToken4Reputation.totalLocked();
   let sumVestedPrime = BigNumber.from(0);
   for (const spec of vestingContracts) {
-    // const contract = new ethers.Contract(
-    //   contract.address,
-    //   VestingAbi.abi,
-    //   provider);
     sumVestedPrime = sumVestedPrime.add(await primeToken.balanceOf(spec.contractAddress));
   }
   console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
@@ -48,6 +44,14 @@ async function getCirculatingSupply(provider) {
   console.log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
   console.log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
   console.log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
+  console.log(`circulating supply: ${fromWei(
+    primeTokenSupply.sub(
+      poolPrimeBalance
+        .add(primeDaoPrimeBalance)
+        .add(primeLockedForRep)
+        .add(treasuryPrimeBalance)
+        .add(sumVestedPrime)))
+    }`);
 }
 
 async function main() {
