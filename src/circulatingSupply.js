@@ -1,12 +1,13 @@
 require("dotenv").config();
 const { ethers, BigNumber } = require("ethers");
 const { formatEther } = require("ethers/lib/utils");
-const ContractAddresses = require("./src/contracts/contractAddresses.json");
-const LockingToken4ReputationAbi = require("./src/contracts/LockingToken4Reputation.json");
-const PrimeTokenAbi = require("./src/contracts/PrimeToken.json");
-const BPoolAbi = require("./src/contracts/BPool.json");
+const ContractAddresses = require("./contracts/contractAddresses.json");
+const LockingToken4ReputationAbi = require("./contracts/LockingToken4Reputation.json");
+const PrimeTokenAbi = require("./contracts/PrimeToken.json");
+const BPoolAbi = require("./contracts/BPool.json");
 //const VestingAbi = require("./src/contracts/TokenVesting.json");
 const vestingContracts = require("./vestingContracts.json").vestingContracts;
+let debugging = false;
 
 function fromWei(weiValue) {
   return formatEther(weiValue.toString());
@@ -38,23 +39,31 @@ async function getCirculatingSupply(provider) {
   for (const spec of vestingContracts) {
     sumVestedPrime = sumVestedPrime.add(await primeToken.balanceOf(spec.contractAddress));
   }
-  console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
-  console.log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
-  console.log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
-  console.log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
-  console.log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
-  console.log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
-  console.log(`circulating supply: ${fromWei(
+
+  const result = fromWei(
     primeTokenSupply.sub(
       poolPrimeBalance
         .add(primeDaoPrimeBalance)
         .add(primeLockedForRep)
         .add(treasuryPrimeBalance)
-        .add(sumVestedPrime)))
-    }`);
+        .add(sumVestedPrime)));
+
+  if (debugging) {
+    console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
+    console.log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
+    console.log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
+    console.log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
+    console.log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
+    console.log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
+    console.log(`circulating supply: ${result}`);
+  }
+  return result;
 }
 
-async function main() {
+const run = (debug) => {
+
+  debugging = !!debug;
+
   const ProviderEndpoints = {
     "mainnet": `https://${process.env.RIVET_ID}.eth.rpc.rivet.cloud/`,
     "rinkeby": `https://${process.env.RIVET_ID}.rinkeby.rpc.rivet.cloud/`,
@@ -62,13 +71,22 @@ async function main() {
     "kovan": `https://kovan.infura.io/v3/${process.env.INFURA_ID}`,
   }
 
-  console.log(`network: ${process.env.NETWORK}`);
+  if (debugging) {
+    console.log(`network: ${process.env.NETWORK}`);
+  }
 
   const provider = ethers.getDefaultProvider(ProviderEndpoints[process.env.NETWORK]);
 
-  await getCirculatingSupply(provider)
+  return getCirculatingSupply(provider)
 }
 
-main()
-  .then(() => { process.exit(0) })
-  .catch((ex) => { console.error(ex); process.exit(-1); });
+// async function main() {
+//   debugging = true;
+//   return run();
+// }
+
+// main()
+//   .then(() => { process.exit(0) })
+//   .catch((ex) => { console.error(ex); process.exit(-1); });
+
+exports.run = run;
