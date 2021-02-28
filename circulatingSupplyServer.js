@@ -5,7 +5,11 @@ const { run } = require('./circulatingSupply');
 let currentValue = "N/A";
 
 const refresh = () => run()
-  .then((result) => { currentValue = result; })
+  .then((result) => {
+    if (result) {
+      currentValue = result;
+    }
+  })
   .catch(console.log);
 
 setInterval(refresh, process.env.INTERVAL_FETCH_SECONDS * 1000);

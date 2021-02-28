@@ -14,49 +14,54 @@ function fromWei(weiValue) {
 
 async function getCirculatingSupply(provider) {
 
-  const lockingToken4Reputation = new ethers.Contract(
-    ContractAddresses[process.env.NETWORK].LockingToken4Reputation,
-    LockingToken4ReputationAbi.abi,
-    provider);
+  try {
+    const lockingToken4Reputation = new ethers.Contract(
+      ContractAddresses[process.env.NETWORK].LockingToken4Reputation,
+      LockingToken4ReputationAbi.abi,
+      provider);
 
-  const bPool = new ethers.Contract(
-    ContractAddresses[process.env.NETWORK].BPool,
-    BPoolAbi.abi,
-    provider);
+    const bPool = new ethers.Contract(
+      ContractAddresses[process.env.NETWORK].BPool,
+      BPoolAbi.abi,
+      provider);
 
-  const primeToken = new ethers.Contract(
-    ContractAddresses[process.env.NETWORK].PrimeToken,
-    PrimeTokenAbi.abi,
-    provider);
+    const primeToken = new ethers.Contract(
+      ContractAddresses[process.env.NETWORK].PrimeToken,
+      PrimeTokenAbi.abi,
+      provider);
 
-  const primeTokenSupply = await primeToken.totalSupply();
-  const poolPrimeBalance = await bPool.getBalance(primeToken.address);
-  const primeDaoPrimeBalance = await primeToken.balanceOf(ContractAddresses[process.env.NETWORK].Avatar);
-  const treasuryPrimeBalance = await primeToken.balanceOf(process.env.TREASURY);
-  const primeLockedForRep = await lockingToken4Reputation.totalLocked();
-  let sumVestedPrime = BigNumber.from(0);
-  for (const spec of vestingContracts) {
-    sumVestedPrime = sumVestedPrime.add(await primeToken.balanceOf(spec.contractAddress));
+    const primeTokenSupply = await primeToken.totalSupply();
+    const poolPrimeBalance = await bPool.getBalance(primeToken.address);
+    const primeDaoPrimeBalance = await primeToken.balanceOf(ContractAddresses[process.env.NETWORK].Avatar);
+    const treasuryPrimeBalance = await primeToken.balanceOf(process.env.TREASURY);
+    const primeLockedForRep = await lockingToken4Reputation.totalLocked();
+    let sumVestedPrime = BigNumber.from(0);
+    for (const spec of vestingContracts) {
+      sumVestedPrime = sumVestedPrime.add(await primeToken.balanceOf(spec.contractAddress));
+    }
+
+    const result = fromWei(
+      primeTokenSupply.sub(
+        poolPrimeBalance
+          .add(primeDaoPrimeBalance)
+          .add(primeLockedForRep)
+          .add(treasuryPrimeBalance)
+          .add(sumVestedPrime)));
+
+    if (debugging) {
+      console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
+      console.log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
+      console.log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
+      console.log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
+      console.log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
+      console.log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
+      console.log(`circulating supply: ${result}`);
+    }
+    return result;
+  } catch (ex) {
+    console.log(ex);
+    return undefined;
   }
-
-  const result = fromWei(
-    primeTokenSupply.sub(
-      poolPrimeBalance
-        .add(primeDaoPrimeBalance)
-        .add(primeLockedForRep)
-        .add(treasuryPrimeBalance)
-        .add(sumVestedPrime)));
-
-  if (debugging) {
-    console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
-    console.log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
-    console.log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
-    console.log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
-    console.log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
-    console.log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
-    console.log(`circulating supply: ${result}`);
-  }
-  return result;
 }
 
 const run = (debug) => {
