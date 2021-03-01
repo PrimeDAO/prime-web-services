@@ -1,10 +1,6 @@
 {
   "vestingContracts": [
     {
-      "name": "Prime Foundation #1",
-      "contractAddress": "0x44bdd60fa60c165c438a3ee93ae0ced2538bdc01"
-    },
-    {
       "name": "Product #1",
       "contractAddress": "0x1c06323844C1d9eaA1e1c61902387f62ebFe9f04"
     },
