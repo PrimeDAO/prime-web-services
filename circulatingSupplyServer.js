@@ -7,7 +7,7 @@ let currentValue = undefined;
 const debugging = !!+process.env.DEBUG;
 
 const log = (message) => {
-  fs.appendFile(process.env.LOGFILE, `${message}\r\n`, () => { });
+  fs.appendFileSync(process.env.LOGFILE, `${message}\r\n`, () => { });
 }
 
 const refresh = () => run(debugging, log)

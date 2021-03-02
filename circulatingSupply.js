@@ -4,7 +4,7 @@ const { formatEther } = require("ethers/lib/utils");
 const ContractAddresses = require("./contracts/contractAddresses.json");
 const LockingToken4ReputationAbi = require("./contracts/LockingToken4Reputation.json");
 const PrimeTokenAbi = require("./contracts/PrimeToken.json");
-const BPoolAbi = require("./contracts/BPool.json");
+// const BPoolAbi = require("./contracts/BPool.json");
 const vestingContracts = require("./vestingContracts.json").vestingContracts;
 let debugging = false;
 
@@ -20,10 +20,10 @@ async function getCirculatingSupply(provider, log) {
       LockingToken4ReputationAbi.abi,
       provider);
 
-    const bPool = new ethers.Contract(
-      ContractAddresses[process.env.NETWORK].BPool,
-      BPoolAbi.abi,
-      provider);
+    // const bPool = new ethers.Contract(
+    //   ContractAddresses[process.env.NETWORK].BPool,
+    //   BPoolAbi.abi,
+    //   provider);
 
     const primeToken = new ethers.Contract(
       ContractAddresses[process.env.NETWORK].PrimeToken,
@@ -31,9 +31,10 @@ async function getCirculatingSupply(provider, log) {
       provider);
 
     const primeTokenSupply = await primeToken.totalSupply();
-    const poolPrimeBalance = await bPool.getBalance(primeToken.address);
+    // const poolPrimeBalance = await bPool.getBalance(primeToken.address);
     const primeDaoPrimeBalance = await primeToken.balanceOf(ContractAddresses[process.env.NETWORK].Avatar);
     const treasuryPrimeBalance = await primeToken.balanceOf(process.env.TREASURY);
+    const primeFoundationBalance = await primeToken.balanceOf(process.env.PRIME_FOUNDATION);
     const primeLockedForRep = await lockingToken4Reputation.totalLocked();
     let sumVestedPrime = BigNumber.from(0);
     for (const spec of vestingContracts) {
@@ -42,18 +43,18 @@ async function getCirculatingSupply(provider, log) {
 
     const result = fromWei(
       primeTokenSupply.sub(
-        poolPrimeBalance
-          .add(primeDaoPrimeBalance)
+        primeDaoPrimeBalance
           .add(primeLockedForRep)
           .add(treasuryPrimeBalance)
+          .add(primeFoundationBalance)
           .add(sumVestedPrime)));
 
     if (debugging) {
       log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
-      log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
-      log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
+      log(`primeDaoBalance: ${fromWei(primeDaoPrimeBalance)}`);
       log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
-      log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
+      log(`treasuryBalance: ${fromWei(treasuryPrimeBalance)}`);
+      log(`primeFoundationBalance: ${fromWei(primeFoundationBalance)}`);
       log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
       log(`circulating supply: ${result}`);
     }
