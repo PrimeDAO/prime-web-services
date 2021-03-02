@@ -2,7 +2,7 @@ require("dotenv").config();
 const http = require('http');
 const { run } = require('./circulatingSupply');
 
-let currentValue = "N/A";
+let currentValue = undefined;
 
 const refresh = () => run()
   .then((result) => {
@@ -18,11 +18,9 @@ refresh();
 
 const server = http.createServer(function (req, res) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
-
-  // var message = 'It works!\n',
-  //   version = 'NodeJS ' + process.versions.node + '\n',
-  //   response = [message, version].join('\n');
-  var response = currentValue;
+  var response = currentValue ? currentValue : "N/A";
   res.end(response);
 });
-server.listen(8799);
+// this is the timeout on execution of requests
+server.timeout = 3600000; // an hour
+server.listen(8080);
