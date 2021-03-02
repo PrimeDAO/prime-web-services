@@ -1,16 +1,33 @@
+const fs = require('fs');
 require("dotenv").config();
 const http = require('http');
 const { run } = require('./circulatingSupply');
 
 let currentValue = undefined;
+const debugging = !!+process.env.DEBUG;
 
-const refresh = () => run()
+const log = (message) => {
+  fs.appendFile(process.env.LOGFILE, `${message}\r\n`, () => { });
+}
+
+const refresh = () => run(debugging, log)
   .then((result) => {
     if (result) {
       currentValue = result;
     }
   })
-  .catch(console.log);
+  .then(async () => {
+    /**
+     * keep ourselves alive...
+     */
+    // const pingResult = await ping.promise.probe(process.env.SELF);
+    // if (debugging) {
+    //   log(`${process.env.SELF} is ${pingResult.alive ? "alive" : "not alive"}`);
+    // }
+  })
+  .catch((ex) => {
+    log(ex.stack);
+  });
 
 setInterval(refresh, process.env.INTERVAL_FETCH_SECONDS * 1000);
 
@@ -19,8 +36,8 @@ refresh();
 const server = http.createServer(function (req, res) {
   res.writeHead(200, { 'Content-Type': 'text/plain' });
   var response = currentValue ? currentValue : "N/A";
-  res.end(response);
+  res.write(response);
+  res.end();
 });
-// this is the timeout on execution of requests
-server.timeout = 3600000; // an hour
-server.listen(8080);
+
+server.listen();

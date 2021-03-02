@@ -12,8 +12,8 @@ function fromWei(weiValue) {
   return formatEther(weiValue.toString());
 };
 
-async function getCirculatingSupply(provider) {
 
+async function getCirculatingSupply(provider, log) {
   try {
     const lockingToken4Reputation = new ethers.Contract(
       ContractAddresses[process.env.NETWORK].LockingToken4Reputation,
@@ -49,22 +49,25 @@ async function getCirculatingSupply(provider) {
           .add(sumVestedPrime)));
 
     if (debugging) {
-      console.log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
-      console.log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
-      console.log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
-      console.log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
-      console.log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
-      console.log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
-      console.log(`circulating supply: ${result}`);
+      log(`primeTokenSupply: ${fromWei(primeTokenSupply)}`);
+      log(`poolPrimeBalance: ${fromWei(poolPrimeBalance)}`);
+      log(`primeDaoPrimeBalance: ${fromWei(primeDaoPrimeBalance)}`);
+      log(`primeLockedForRep: ${fromWei(primeLockedForRep)}`);
+      log(`treasuryPrimeBalance: ${fromWei(treasuryPrimeBalance)}`);
+      log(`sumVestedPrime: ${fromWei(sumVestedPrime)}`);
+      log(`circulating supply: ${result}`);
     }
     return result;
   } catch (ex) {
-    console.log(ex);
-    return undefined;
+    try {
+      log(ex.stack);
+    } finally {
+      return undefined;
+    }
   }
 }
 
-const run = (debug) => {
+const run = (debug, log) => {
 
   debugging = !!debug;
 
@@ -76,21 +79,12 @@ const run = (debug) => {
   }
 
   if (debugging) {
-    console.log(`network: ${process.env.NETWORK}`);
+    log(`network: ${process.env.NETWORK}`);
   }
 
   const provider = ethers.getDefaultProvider(ProviderEndpoints[process.env.NETWORK]);
 
-  return getCirculatingSupply(provider)
+  return getCirculatingSupply(provider, log)
 }
-
-// async function main() {
-//   debugging = true;
-//   return run();
-// }
-
-// main()
-//   .then(() => { process.exit(0) })
-//   .catch((ex) => { console.error(ex); process.exit(-1); });
 
 exports.run = run;
