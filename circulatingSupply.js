@@ -68,22 +68,22 @@ async function getCirculatingSupply(provider, log) {
   }
 }
 
+const ProviderEndpoints = {
+  "mainnet": `https://${process.env.RIVET_ID}.eth.rpc.rivet.cloud/`,
+  "rinkeby": `https://${process.env.RIVET_ID}.rinkeby.rpc.rivet.cloud/`,
+  // "kovan": `https://${process.env.RIVET_ID}.kovan.rpc.rivet.cloud/`,
+  "kovan": `https://kovan.infura.io/v3/${process.env.INFURA_ID}`,
+}
+
+const provider = ethers.getDefaultProvider(ProviderEndpoints[process.env.NETWORK]);
+
 const run = (debug, log) => {
 
   debugging = !!debug;
 
-  const ProviderEndpoints = {
-    "mainnet": `https://${process.env.RIVET_ID}.eth.rpc.rivet.cloud/`,
-    "rinkeby": `https://${process.env.RIVET_ID}.rinkeby.rpc.rivet.cloud/`,
-    // "kovan": `https://${process.env.RIVET_ID}.kovan.rpc.rivet.cloud/`,
-    "kovan": `https://kovan.infura.io/v3/${process.env.INFURA_ID}`,
-  }
-
   if (debugging) {
-    log(`network: ${process.env.NETWORK}`);
+    log(`fetching...`);
   }
-
-  const provider = ethers.getDefaultProvider(ProviderEndpoints[process.env.NETWORK]);
 
   return getCirculatingSupply(provider, log)
 }
