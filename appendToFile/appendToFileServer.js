@@ -42,4 +42,4 @@ const server = http.createServer(async function (req, res) {
   res.end();
 });
 
-server.listen(process.env.PORT ?? 8080);
+server.listen(process.env.PORT);
