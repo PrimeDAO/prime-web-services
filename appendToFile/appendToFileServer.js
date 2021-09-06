@@ -17,17 +17,12 @@ const writeStringToStorage = (value, prod) => {
   }
 }
 
-if (debugging) {
-  log(`network: ${process.env.NETWORK}`);
-}
-
 const server = http.createServer(async function (req, res) {
   const getString = (value) => {
     let json;
     try {
-      console.log(value);
+      log(`parsing ${value}`);
       json = JSON.parse(value);
-      console.dir(json);
       /**
        * {
        *   prod?: true|false|1|0 // if missing then assumed false
@@ -36,7 +31,7 @@ const server = http.createServer(async function (req, res) {
        */
       writeStringToStorage(json.email, (!!json?.prod ?? false));
     } catch (ex) {
-      log(`An error occurred parsing the posted data ${ex.message ?? ex}`)
+      log(`An error occurred parsing: ${ex.message ?? ex}`)
     }
   };
 
