@@ -1,9 +1,9 @@
 require("dotenv").config();
 const { ethers, BigNumber } = require("ethers");
 const { formatEther } = require("ethers/lib/utils");
-const ContractAddresses = require("./contracts/contractAddresses.json");
-const LockingToken4ReputationAbi = require("./contracts/LockingToken4Reputation.json");
-const PrimeTokenAbi = require("./contracts/PrimeToken.json");
+const ContractAddresses = require("../contracts/contractAddresses.json");
+const LockingToken4ReputationAbi = require("../contracts/LockingToken4Reputation.json");
+const PrimeTokenAbi = require("../contracts/PrimeToken.json");
 // const BPoolAbi = require("./contracts/BPool.json");
 const vestingContracts = require("./vestingContracts.json").vestingContracts;
 let debugging = false;
