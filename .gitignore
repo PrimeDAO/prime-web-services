@@ -1,8 +1,7 @@
 # Logs
 logs
 *.log
-log.txt
-latestSupply.txt
+*.txt
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
